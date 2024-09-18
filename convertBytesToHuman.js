@@ -25,8 +25,13 @@ export default function convertBytesToHuman(bytes) {
     // счетчик переводов числа
     let convertCnt = 0;
 
-    // пока длина целой части числа больше 3 (не совсем удобно для чтения)
+    // пока длина целой части числа больше 3 (значит не совсем удобно для чтения)
     while (String(Math.floor(result)).length > 3) {
+        // если текущая размерность на границе доступных для перевода
+        if (convertCnt === unitsOfMeasurement.length - 1) {
+            break;
+        }
+
         convertCnt += 1;
         result /= 1024;
     }

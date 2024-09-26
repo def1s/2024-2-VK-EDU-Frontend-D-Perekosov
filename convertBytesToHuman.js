@@ -13,7 +13,12 @@
  */
 
 export default function convertBytesToHuman(bytes) {
-    if (typeof bytes !== 'number' || bytes < 0) {
+    if (
+        typeof bytes !== 'number' ||
+        isNaN(bytes) ||
+        bytes < 0 ||
+        !isFinite(bytes)
+    ) {
         return false;
     }
 

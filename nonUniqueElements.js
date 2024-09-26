@@ -29,11 +29,11 @@ export default function nonUniqueElements(data) {
     const map = new Map();
 
     for (let i = 0; i < data.length; i++) {
-        map.set(data[i], (map.get(data[i]) || 0) + 1);
+        map.set(data[i], map.has(data[i]));
     }
 
     for (let i = 0; i < data.length; i++) {
-        if (map.get(data[i]) > 1) {
+        if (map.get(data[i])) {
             result.push(data[i]);
         }
     }

@@ -11,10 +11,10 @@ import convertBytesToHuman from './convertBytesToHuman';
 
 // для удобства определяю базовые единицы измерения в байтах
 const kb = 1024;
-const mb = 1048576;
-const gb = 1073741824;
-const tb = 1099511627776;
-const pb = 1125899906842624;
+const mb = kb * 1024;
+const gb = mb * 1024;
+const tb = gb * 1024;
+const pb = tb * 1024;
 
 test('Правильно конвертирует байты в килобайты', () => {
   expect(convertBytesToHuman(kb)).toBe('1 KB');
@@ -23,27 +23,27 @@ test('Правильно конвертирует байты в килобайт
 
 test('Правильно конвертирует байты в мегабайты', () => {
   expect(convertBytesToHuman(mb)).toBe('1 MB');
-  expect(convertBytesToHuman(123123123)).toBe('117.42 MB');
+  expect(convertBytesToHuman(mb * 117.42)).toBe('117.42 MB');
 });
 
 test('Правильно конвертирует байты в гигабайты', () => {
   expect(convertBytesToHuman(gb)).toBe('1 GB');
-  expect(convertBytesToHuman(1063004405760)).toBe('990 GB');
+  expect(convertBytesToHuman(gb * 990)).toBe('990 GB');
 });
 
 test('Правильно конвертирует байты в терабайты', () => {
   expect(convertBytesToHuman(tb)).toBe('1 TB');
-  expect(convertBytesToHuman(50027779063808)).toBe('45.5 TB');
+  expect(convertBytesToHuman(tb * 45.5)).toBe('45.5 TB');
 });
 
 test('Правильно конвертирует байты в петабайты', () => {
   expect(convertBytesToHuman(pb)).toBe('1 PB');
-  expect(convertBytesToHuman(51228445761339390)).toBe('45.5 PB');
+  expect(convertBytesToHuman(pb * 45.5)).toBe('45.5 PB');
 });
 
 test('Правильно конвертирует очень большие числа', () => {
-  expect(convertBytesToHuman(1125787316851939700)).toBe('999.9 PB');
-  expect(convertBytesToHuman(2125787316851939700)).toBe('1888.08 PB');
+  expect(convertBytesToHuman(pb * 999.9)).toBe('999.9 PB');
+  expect(convertBytesToHuman(pb * 1888.08)).toBe('1888.08 PB');
 });
 
 test('Правильно конвертирует байты, близкие к границе перевода', () => {
@@ -56,10 +56,14 @@ test('Правильно конвертирует байты, близкие к 
 test('Правильно определяет невозможные кейсы', () => {
   expect(convertBytesToHuman(-1)).toBeFalsy();
   expect(convertBytesToHuman(-10000000000)).toBeFalsy();
+  expect(convertBytesToHuman(NaN)).toBeFalsy();
+  expect(convertBytesToHuman(Infinity)).toBeFalsy();
+  expect(convertBytesToHuman(-Infinity)).toBeFalsy();
 });
 
 test('Правильно определяет неверный ввод', () => {
   expect(convertBytesToHuman('some string')).toBeFalsy();
+  expect(convertBytesToHuman('12')).toBeFalsy();
   expect(convertBytesToHuman(null)).toBeFalsy();
   expect(convertBytesToHuman(undefined)).toBeFalsy();
 });

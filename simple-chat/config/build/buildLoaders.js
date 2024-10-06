@@ -1,4 +1,6 @@
-const buildLoaders = () => {
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const buildLoaders = (isDev) => {
     const babelLoader = {
         test: /\.js$/,
         use: [
@@ -11,14 +13,11 @@ const buildLoaders = () => {
         ],
     };
 
-    const sassLoader =  {
+    const sassLoader = {
         test: /\.s[ac]ss$/i,
         use: [
-            // Creates `style` nodes from JS strings
-            "style-loader",
-            // Translates CSS into CommonJS
+            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
             "css-loader",
-            // Compiles Sass to CSS
             "sass-loader",
         ],
     };
@@ -26,7 +25,7 @@ const buildLoaders = () => {
     return [
         babelLoader,
         sassLoader
-    ]
+    ];
 };
 
 module.exports = buildLoaders;

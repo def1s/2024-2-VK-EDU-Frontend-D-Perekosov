@@ -13,12 +13,14 @@ const paths = {
 
 // можно вынести в env
 const port = 3000;
-const mode = 'development'; // development | production
+const mode = 'production'; // development | production
+const isDev = mode === 'development';
 
 const options = {
     paths,
     port,
-    mode
+    mode,
+    isDev
 }
 
 module.exports = buildWebpackConfig(options);

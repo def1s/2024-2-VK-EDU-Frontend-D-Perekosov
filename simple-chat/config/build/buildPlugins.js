@@ -4,7 +4,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const buildPlugins = (paths) => {
     return [
         new MiniCSSExtractPlugin({
-            filename: 'style.scss',
+            filename: '[name].[contenthash].css',
         }),
         new HTMLWebpackPlugin({
             filename: 'index.html',

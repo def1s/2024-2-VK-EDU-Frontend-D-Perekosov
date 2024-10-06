@@ -16,7 +16,7 @@ const buildWebpackConfig = (options) => {
             publicPath: '/'
         },
         module: {
-            rules: buildLoaders()
+            rules: buildLoaders(options.isDev)
         },
         plugins: buildPlugins(options.paths),
         devServer: buildDevServer(options.port)

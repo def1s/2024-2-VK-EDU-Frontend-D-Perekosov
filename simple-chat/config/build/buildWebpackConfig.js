@@ -13,7 +13,7 @@ const buildWebpackConfig = (options) => {
             path: options.paths.build,
             filename: '[name][contenthash].js',
             clean: true,
-            publicPath: '/'
+            publicPath: './'
         },
         module: {
             rules: buildLoaders(options.isDev)

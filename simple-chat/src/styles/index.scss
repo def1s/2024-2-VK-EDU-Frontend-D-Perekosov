@@ -31,35 +31,57 @@ body {
 }
 
 .main {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    overflow: scroll;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #fff;
+    padding-bottom: 70px;
 }
 
 .header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 16px;
     background-color: #f5f5f5;
     border-bottom: 1px solid #ddd;
 }
 
-.arrow {
-    margin-right: 5px;
+.addFile {
+    position: absolute;
+    bottom: 15px;
+    right: 35px;
+    cursor: pointer;
+}
+
+.deleteMessages {
+    width: 150px;
+    height: 40px;
+    background-color: #fff;
+    outline: none;
+    border: solid 1px #ddd;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .user {
     display: flex;
     align-items: center;
+    gap: 5px;
 
     &_name {
+        white-space: nowrap;
+        max-width: 200px;
         font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &_avatar {
         font-size: 40px;
-        margin-right: 5px;
     }
 
     &_status {
@@ -68,26 +90,16 @@ body {
     }
 }
 
-.chat {
-    height: 100%;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
+.messages {
+    overflow-y: auto;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    position: relative;
-    background-color: #fff;
-    padding-bottom: 70px;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
 
-    &_list {
-        overflow-y: auto;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .messageItem {
+    &_item {
         display: flex;
         flex-direction: column;
         background-color: var(--message-bg);
@@ -110,26 +122,43 @@ body {
             margin-bottom: 5px;
         }
 
+        .image {
+            max-height: 400px;
+        }
+
         .time {
             font-size: 12px;
             color: var(--time-color);
             text-align: right;
         }
+
+        .error {
+            color: var(--error-color);
+        }
     }
+}
+
+.chat {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
 
     &_input {
-        height: var(--message-input-height);
+        resize: none;
         width: 95%;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        position: absolute;
+        height: var(--message-input-height);
         background-color: var(--message-bg);
-        padding: 10px;
+        padding: 15px;
         font-size: 15px;
         outline: none;
         border: solid 1px #e2e2e4;
         border-radius: 20px;
+        margin: 0 auto;
+    }
+
+    &_file {
+        display: none;
     }
 }
 
@@ -138,7 +167,7 @@ body {
         max-width: 100%;
     }
 
-    .messageItem {
+    .messages_item {
         max-width: 90%;
     }
 }

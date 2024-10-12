@@ -11,20 +11,25 @@
 
             <div class="header">
                 <div class="user">
-                    <span class="material-symbols-outlined arrow">arrow_back</span>
+                    <span class="material-symbols-outlined">arrow_back</span>
                     <span class="material-symbols-outlined user_avatar">account_circle</span>
                     <div>
-                        <div class="user_name">Даниил Перекосов</div>
+                        <div class="user_name" title="Даниил Перекосов">Даниил Перекосов</div>
                         <div class="user_status">заходил минуту назад</div>
                     </div>
                 </div>
+
+                <button class="deleteMessages">Очистить сообщения</button>
             </div>
 
             <div class="main">
-                <form class="chat" action="/">
-                    <div class="chat_list"></div>
-                    <input class="chat_input" name="chat_input" placeholder="Введите сообщение" type="text">
-                </form>
+                <div class="messages"></div>
+
+                <div class="chat">
+                    <textarea class="chat_input" placeholder="Введите сообщение" name="chat_input"></textarea>
+                    <input type="file" class="chat_file">
+                    <span class="material-symbols-outlined addFile">attach_file_add</span>
+                </div>
             </div>
 
         </div>

@@ -1,5 +1,7 @@
+const renderMessage = require('../renderMessage/renderMessage');
+
 const renderMessagesFromLocalStorage = () => {
-    const chatList = document.querySelector('.chat_list');
+    const messagesList = document.querySelector('.messages');
 
     try {
         const messagesString = localStorage.getItem('messages');
@@ -10,17 +12,10 @@ const renderMessagesFromLocalStorage = () => {
         }
 
         messages.forEach((message) => {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('messageItem');
-            messageElement.innerHTML = `
-                <div class="sender">${message.author}</div>
-                <div class="text">${message.text}</div>
-                <div class="time">${message.timestamp}</div>
-            `;
-            chatList.append(messageElement);
+            renderMessage(message);
         });
 
-        chatList.scrollTop = chatList.scrollHeight;
+        messagesList.scrollTop = messagesList.scrollHeight;
     } catch (e) {
         console.error('Ошибка при чтении из localStorage: ', e);
     }

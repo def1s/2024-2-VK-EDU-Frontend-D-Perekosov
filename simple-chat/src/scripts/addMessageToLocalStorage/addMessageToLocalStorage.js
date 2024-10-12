@@ -1,10 +1,10 @@
 const addMessageToLocalStorage = (message) => {
     try {
-        const currentChatListString = localStorage.getItem('messages');
-        const chatList = currentChatListString ? JSON.parse(currentChatListString) : [];
+        const currentMessagesString = localStorage.getItem('messages');
+        const messages = currentMessagesString ? JSON.parse(currentMessagesString) : [];
 
-        chatList.push(message);
-        localStorage.setItem('messages', JSON.stringify(chatList));
+        messages.push(message);
+        localStorage.setItem('messages', JSON.stringify(messages));
     } catch (e) {
         console.error('Ошибка при работе с localStorage: ', e);
     }
